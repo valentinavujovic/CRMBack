@@ -19,5 +19,6 @@ namespace CRMSYSTEMBACK.Helpers
             options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Project> Project { get; set; }
     }
 }

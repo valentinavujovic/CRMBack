@@ -16,14 +16,13 @@ namespace CRMSYSTEMBACK.Controllers
     {
         private IUserService _userService;
 
-        public object BCryptNet { get; private set; }
-
+  
         public UsersController(IUserService userService)
         {
             _userService = userService;
         }
-  
-       
+
+    
 
         [AllowAnonymous]
         [HttpPost("[action]")]
@@ -41,6 +40,7 @@ namespace CRMSYSTEMBACK.Controllers
             return Ok(users);
         }
 
+       
         [HttpGet("{id:int}")]
         public IActionResult GetById(int id)
         {

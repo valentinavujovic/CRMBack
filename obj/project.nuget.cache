@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "LmABaRzG/NEn9O95Nx4KVRQfTA7ZtLZiqks4TD/CW9mYLSCYrXrD2JgpCaFYwLbkTrI8J+y23bdGCsI/nGNPLQ==",
+  "dgSpecHash": "Mlyl9YfZleez4wwjR8t04RLiYyo6wiFNwCxHRJ0J1J1NEgosqs7PIV+gnfsVa48FYyKwhwgqm2141imSJ+vg4Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\vujov\\source\\repos\\CRMSYSTEMBACK\\CRMSYSTEMBACK.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\vujov\\.nuget\\packages\\bcrypt\\1.0.0\\bcrypt.1.0.0.nupkg.sha512",
+    "C:\\Users\\vujov\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\vujov\\.nuget\\packages\\google.protobuf\\3.19.4\\google.protobuf.3.19.4.nupkg.sha512",
     "C:\\Users\\vujov\\.nuget\\packages\\k4os.compression.lz4\\1.2.6\\k4os.compression.lz4.1.2.6.nupkg.sha512",
     "C:\\Users\\vujov\\.nuget\\packages\\k4os.compression.lz4.streams\\1.2.6\\k4os.compression.lz4.streams.1.2.6.nupkg.sha512",
@@ -65,5 +67,16 @@
     "C:\\Users\\vujov\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
     "C:\\Users\\vujov\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'BCrypt 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "BCrypt",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

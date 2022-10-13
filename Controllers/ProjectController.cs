@@ -15,10 +15,11 @@ namespace CRMSYSTEMBACK.Controllers
         {
             _configuration = configuration;
         }
-        [HttpGet]
-        public JsonResult Get()
+        [HttpGet("{users_id}")]
+        public JsonResult Get(int users_id)
         {
-            string query = @"select id,ProjectTitle,ProjectDescription,Projectdeadline,ProjectStatus from Project";
+
+            string query = @"select id,users_id,ProjectTitle,ProjectDescription,Projectdeadline,ProjectStatus from Project where users_id='" + users_id + "'";
             DataTable table = new DataTable();
             String sqlDataSource = _configuration.GetConnectionString("CRMAppCon");
             MySqlDataReader myreader;
@@ -35,11 +36,10 @@ namespace CRMSYSTEMBACK.Controllers
             }
             return new JsonResult(table);
         }
-        [HttpPost]
-        public JsonResult Post(Project project)
+        [HttpGet]
+        public JsonResult Get()
         {
-            string query = @"insert into Project(ProjectTitle,ProjectDescription,Projectdeadline,ProjectStatus) values (@ProjectTitle,@ProjectDescription,@Projectdeadline,@ProjectStatus);
-";
+            string query = @"select id,users_id,ProjectTitle,ProjectDescription,Projectdeadline,ProjectStatus from Project";
             DataTable table = new DataTable();
             String sqlDataSource = _configuration.GetConnectionString("CRMAppCon");
             MySqlDataReader myreader;
@@ -48,11 +48,33 @@ namespace CRMSYSTEMBACK.Controllers
                 mycon.Open();
                 using (MySqlCommand myComand = new MySqlCommand(query, mycon))
                 {
-
+                    myreader = myComand.ExecuteReader();
+                    table.Load(myreader);
+                    myreader.Close();
+                    mycon.Close();
+                }
+            }
+            return new JsonResult(table);
+        }
+        [HttpPost()]
+        public JsonResult Post(Project project,int id)
+        {
+            string query = @"insert into Project(ProjectTitle,ProjectDescription,Projectdeadline,ProjectStatus,users_id) values (@ProjectTitle,@ProjectDescription,@Projectdeadline,@ProjectStatus,@users_id)";
+            DataTable table = new DataTable();
+            String sqlDataSource = _configuration.GetConnectionString("CRMAppCon");
+            MySqlDataReader myreader;
+            using (MySqlConnection mycon = new MySqlConnection(sqlDataSource))
+            {
+                mycon.Open();
+                using (MySqlCommand myComand = new MySqlCommand(query, mycon))
+                {
+                   
                     myComand.Parameters.AddWithValue("@ProjectTitle", project.ProjectTitle);
                     myComand.Parameters.AddWithValue("@ProjectDescription", project.ProjectDescription);
                     myComand.Parameters.AddWithValue("@ProjectStatus", project.ProjectStatus);
                     myComand.Parameters.AddWithValue("@Projectdeadline", project.Projectdeadline);
+                    myComand.Parameters.AddWithValue("@users_id", project.users_id);
+
                     myreader = myComand.ExecuteReader();
                     table.Load(myreader);
                     myreader.Close();
@@ -65,10 +87,11 @@ namespace CRMSYSTEMBACK.Controllers
         public JsonResult Put(Project project)
         {
             string query = @"update Project set
-                            ProjectTitle = @ProjectTitle,
-                            ProjectDescription= @ProjectDescription,
-                            Projectdeadline=@Projectdeadline,
-                            ProjectStatus=@ProjectStatus
+                            users_id=@users_id,
+                            projectTitle = @ProjectTitle,
+                            projectDescription= @ProjectDescription,
+                            projectdeadline=@Projectdeadline,
+                            projectStatus=@ProjectStatus
                             where id = @projectid;
 ";
             DataTable table = new DataTable();
@@ -80,6 +103,7 @@ namespace CRMSYSTEMBACK.Controllers
                 using (MySqlCommand myComand = new MySqlCommand(query, mycon))
                 {
                     myComand.Parameters.AddWithValue("@projectid", project.Id);
+                    myComand.Parameters.AddWithValue("@users_id", project.users_id);
                     myComand.Parameters.AddWithValue("@ProjectTitle", project.ProjectTitle);
                     myComand.Parameters.AddWithValue("@ProjectDescription", project.ProjectDescription);
                     myComand.Parameters.AddWithValue("@ProjectStatus", project.ProjectStatus);

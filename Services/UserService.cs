@@ -12,6 +12,7 @@
         AuthenticateResponse Authenticate(AuthenticateRequest model);
         IEnumerable<User> GetAll();
         User GetById(int id);
+        IEnumerable<Project> GetbyUser();
     }
 
     public class UserService : IUserService
@@ -44,11 +45,17 @@
 
             return new AuthenticateResponse(user, jwtToken);
         }
-
+       
+   
         public IEnumerable<User> GetAll()
         {
             return _context.Users;
         }
+       public IEnumerable<Project> GetbyUser()
+        {
+            return _context.Project;
+        }
+
 
         public User GetById(int id)
         {
@@ -56,5 +63,9 @@
             if (user == null) throw new KeyNotFoundException("User not found");
             return user;
         }
+   
+
+        
+       
     }
 }
