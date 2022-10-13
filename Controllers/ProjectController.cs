@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System.Data;
-
+using CRMSYSTEMBACK.Entities;
 namespace CRMSYSTEMBACK.Controllers
 {
     [Route("api/[controller]")]
@@ -116,6 +116,7 @@ namespace CRMSYSTEMBACK.Controllers
             }
             return new JsonResult("Changed succesfully");
         }
+
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {

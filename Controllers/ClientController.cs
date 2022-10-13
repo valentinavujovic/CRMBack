@@ -92,6 +92,37 @@ namespace CRMSYSTEMBACK.Controllers
             }
             return new JsonResult("Changed succesfully");
         }
+        [HttpPut("users")]
+        public JsonResult Put1(User client)
+        {
+            string query = @"update Users set 
+                            name=@name,
+                            email=@email,
+                            passwordHash=@passwordHash,
+                            role=@role
+                            where id=@clientid;
+";
+            DataTable table = new DataTable();
+            String sqlDataSource = _configuration.GetConnectionString("CRMAppCon");
+            MySqlDataReader myreader;
+            using (MySqlConnection mycon = new MySqlConnection(sqlDataSource))
+            {
+                mycon.Open();
+                using (MySqlCommand myComand = new MySqlCommand(query, mycon))
+                {
+                    myComand.Parameters.AddWithValue("@clientid", client.Id);
+                    myComand.Parameters.AddWithValue("@name", client.Name);
+                    myComand.Parameters.AddWithValue("@email", client.Email);
+                    myComand.Parameters.AddWithValue("@passwordHash", client.PasswordHash);
+                    myComand.Parameters.AddWithValue("@role", client.Role);
+                    myreader = myComand.ExecuteReader();
+                    table.Load(myreader);
+                    myreader.Close();
+                    mycon.Close();
+                }
+            }
+            return new JsonResult("Changed succesfully");
+        }
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
