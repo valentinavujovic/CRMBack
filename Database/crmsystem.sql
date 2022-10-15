@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2022 at 12:36 AM
+-- Generation Time: Oct 15, 2022 at 06:16 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -41,14 +41,9 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`id`, `users_id`, `ProjectTitle`, `ProjectDescription`, `Projectdeadline`, `ProjectStatus`) VALUES
-(1, 1, 'Projekat1', 'Tralalal adaika hiad', '2023-12-23', 'Open'),
-(2, 1, 'aaaaa', 'daadad', '2222-12-22', 'Cancelled'),
-(3, 1, 'sfsfsf', 'fsffss', '2222-02-22', 'Open'),
-(13, 4, 'aaa', 'fsfs', '2222-12-22', 'In Progress'),
-(14, 8, 'Projekat 2', 'Tu ima nesto', '2222-12-22', 'In Progress'),
-(16, 8, 'ewwe', 'eweww', '2222-12-22', 'Open'),
-(17, 1, 'novi dodat', 'daadad', '2222-12-22', 'Cancelled'),
-(18, 5, 'aaa', 'aaaa', '0022-12-22', 'In Progress');
+(20, 8, 'Projektic', '122121', '2222-12-22', 'Cancelled'),
+(21, 8, 'sdfssf', '21112', '2222-12-22', 'Cancelled'),
+(24, 8, 'Hej', 'Zdravo', '2222-12-22', 'Cancelled');
 
 -- --------------------------------------------------------
 
@@ -69,13 +64,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `passwordHash`, `role`) VALUES
-(1, 'taki', 'rarr', 'password', 0),
-(4, 'hufsffssfshu', 'isi@a', 'password', 1),
-(5, 'Zuzi', 'isi@a', 'password', 1),
-(8, 'MarijaAdmin', 'marija', 'marija', 1),
-(10, 'MarijaAdmin', 'admin', 'admin', 0),
-(12, 'Novi dodati', 'aaa', 'password', 1),
-(13, 'Novi dodati', 'aaa', 'password', 1);
+(4, 'hufsffssfshu', 'isi@a', '55c123196402ef4b16c36bad51f12467397146987c479d41375831d1de9ed935', 1),
+(8, 'Marija', 'marija', '77d93ff139ca3ebec3d50e239dffedf57671be9d5470cfd98784b542dcb301a5', 1),
+(17, 'sa hash', 'aaaa', '61be55a8e2f6b4e172338bddf184d6dbee29c98853e0a0485ecee7f27b9af0b4', 1),
+(18, 'Admin', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 0);
 
 --
 -- Indexes for dumped tables
@@ -108,7 +100,7 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

@@ -206,7 +206,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwIiwibmJmIjoxNjY1Njg4MDg4LCJleHAiOjE2NjYyOTI4ODgsImlhdCI6MTY2NTY4ODA4OH0.19yk5T-MVTwS0g91uZF1L-PUdbpWnECHhCSOcmKgY9k",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE4IiwibmJmIjoxNjY1ODQ2ODUzLCJleHAiOjE2NjY0NTE2NTMsImlhdCI6MTY2NTg0Njg1M30.Y2nhYTRBmrDaIKho9wu5NaaapAAFici3zJj74uEOvsA",
 									"type": "string"
 								}
 							]
@@ -215,7 +215,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"ProjectTitle\": \"Project8\",\r\n        \"ProjectDescription\": \"Neko novi  treci hdak hadaika hiad\",\r\n        \"Projectdeadline\": \"2023-08-23T00:00:00\",\r\n        \"ProjectStatus\": \"Started\"\r\n    }",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -446,10 +446,24 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Delete all projects that user 4 have",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/project/allfromuser/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"project",
+								"allfromuser",
+								"4"
+							]
+						}
 					},
 					"response": []
 				}
