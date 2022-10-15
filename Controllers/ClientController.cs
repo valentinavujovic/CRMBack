@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System.Data;
-
+using CRMSYSTEMBACK.Helpers;
 
 namespace CRMSYSTEMBACK.Controllers
 {
@@ -12,6 +12,7 @@ namespace CRMSYSTEMBACK.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
+        Encription en = new Encription();
         private readonly IConfiguration _configuration;
         public ClientController(IConfiguration configuration)
         {
@@ -40,7 +41,7 @@ namespace CRMSYSTEMBACK.Controllers
         [HttpPost]
         public JsonResult Post(User client)
         {
-            string query = @"insert into Users(name,email,role) values (@name,@email,@role);
+            string query = @"insert into Users(name,email,passwordHash,role) values (@name,@email,@passwordHash,@role);
 ";
             DataTable table = new DataTable();
             String sqlDataSource = _configuration.GetConnectionString("CRMAppCon");
@@ -52,6 +53,7 @@ namespace CRMSYSTEMBACK.Controllers
                 {
                     myComand.Parameters.AddWithValue("@name", client.Name);
                     myComand.Parameters.AddWithValue("@email", client.Email);
+                    myComand.Parameters.AddWithValue("@passwordHash", en.HashString(client.PasswordHash));
                     myComand.Parameters.AddWithValue("@role", 1) ;
                     myreader = myComand.ExecuteReader();
                     table.Load(myreader);
@@ -113,7 +115,7 @@ namespace CRMSYSTEMBACK.Controllers
                     myComand.Parameters.AddWithValue("@clientid", client.Id);
                     myComand.Parameters.AddWithValue("@name", client.Name);
                     myComand.Parameters.AddWithValue("@email", client.Email);
-                    myComand.Parameters.AddWithValue("@passwordHash", client.PasswordHash);
+                    myComand.Parameters.AddWithValue("@passwordHash", en.HashString(client.PasswordHash));
                     myComand.Parameters.AddWithValue("@role", client.Role);
                     myreader = myComand.ExecuteReader();
                     table.Load(myreader);

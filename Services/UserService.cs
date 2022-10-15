@@ -17,6 +17,7 @@
 
     public class UserService : IUserService
     {
+        Encription en = new Encription();
         private DataContext _context;
         private IJwtUtils _jwtUtils;
         private readonly AppSettings _appSettings;
@@ -37,7 +38,8 @@
             var user = _context.Users.SingleOrDefault(x => x.Email == model.Email);
 
             // validate
-            if (user == null || model.Password != user.PasswordHash)
+            
+            if (user == null || en.HashString(model.Password) != user.PasswordHash)
                 throw new AppException("Email or password is incorrect");
 
             // authentication successful so generate jwt token
