@@ -84,7 +84,7 @@ namespace CRMSYSTEMBACK.Controllers
                     myComand.Parameters.AddWithValue("@clientid", client.Id);
                     myComand.Parameters.AddWithValue("@name", client.Name);
                     myComand.Parameters.AddWithValue("@email", client.Email);
-                    myComand.Parameters.AddWithValue("@passwordHash", client.PasswordHash);
+                    myComand.Parameters.AddWithValue("@passwordHash", en.HashString(client.PasswordHash));
                     myComand.Parameters.AddWithValue("@role", 1);
                     myreader = myComand.ExecuteReader();
                     table.Load(myreader);
