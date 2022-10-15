@@ -140,6 +140,30 @@ namespace CRMSYSTEMBACK.Controllers
             }
             return new JsonResult("deleted succesfully");
         }
+        [HttpDelete("allfromuser/{id}")]
+        public JsonResult Deletee(int id)
+        {
+            string query = @"delete from Project where users_id=@users_id;
+";
+            DataTable table = new DataTable();
+            String sqlDataSource = _configuration.GetConnectionString("CRMAppCon");
+            MySqlDataReader myreader;
+            using (MySqlConnection mycon = new MySqlConnection(sqlDataSource))
+            {
+                mycon.Open();
+                using (MySqlCommand myComand = new MySqlCommand(query, mycon))
+                {
+                    myComand.Parameters.AddWithValue("@users_id", id);
 
-    }
+                    myreader = myComand.ExecuteReader();
+                    table.Load(myreader);
+                    myreader.Close();
+                    mycon.Close();
+                }
+            }
+            return new JsonResult("deleted succesfully");
+        }
+           
+
+        }
 }
